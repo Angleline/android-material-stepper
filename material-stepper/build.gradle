@@ -56,7 +56,7 @@ android {
 
 dependencies {
     compile ("com.android.support:appcompat-v7:$androidSupportLibraryVersion")
-
+    compile 'com.nineoldandroids:library:2.4.0'
     testCompile("junit:junit:$junitVersion")
     testCompile("org.mockito:mockito-core:$mockitoVersion")
     testCompile("com.squareup.assertj:assertj-android:$assertjVersion")

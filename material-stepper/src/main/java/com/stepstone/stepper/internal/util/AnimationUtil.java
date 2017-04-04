@@ -1,11 +1,12 @@
 package com.stepstone.stepper.internal.util;
 
-import android.animation.Animator;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
+
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.view.ViewPropertyAnimator;
 
 import java.lang.annotation.Retention;
 
@@ -35,12 +36,13 @@ public final class AnimationUtil {
 
     /**
      * Animate the View's visibility using a fade animation.
-     * @param view The View to be animated
+     *
+     * @param view       The View to be animated
      * @param visibility View visibility constant, can be either View.VISIBLE, View.INVISIBLE or View.GONE
-     * @param animate true if the visibility should be changed with an animation, false if instantaneously
+     * @param animate    true if the visibility should be changed with an animation, false if instantaneously
      */
     public static void fadeViewVisibility(@NonNull final View view, @Visibility final int visibility, boolean animate) {
-        ViewPropertyAnimator animator = view.animate();
+        ViewPropertyAnimator animator = ViewPropertyAnimator.animate(view);
         animator.cancel();
         animator.alpha(visibility == View.VISIBLE ? ALPHA_OPAQUE : ALPHA_INVISIBLE)
                 .setDuration(animate ? DEFAULT_DURATION : 0)

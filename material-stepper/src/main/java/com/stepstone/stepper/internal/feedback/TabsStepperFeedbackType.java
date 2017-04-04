@@ -18,6 +18,7 @@ package com.stepstone.stepper.internal.feedback;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -56,12 +57,12 @@ public class TabsStepperFeedbackType implements StepperFeedbackType {
     public void showProgress(@NonNull String progressMessage) {
         setTabNavigationEnabled(false);
         mProgressMessageTextView.setText(progressMessage);
-        mProgressMessageTextView.animate()
+        ViewCompat.animate(mProgressMessageTextView)
                 .setStartDelay(PROGRESS_ANIMATION_DURATION)
                 .alpha(ALPHA_OPAQUE)
                 .translationY(0.0f)
                 .setDuration(PROGRESS_ANIMATION_DURATION);
-        mTabs.animate()
+        ViewCompat.animate(mTabs)
                 .alpha(ALPHA_INVISIBLE)
                 .setStartDelay(0)
                 .setInterpolator(new LinearInterpolator())
@@ -72,12 +73,12 @@ public class TabsStepperFeedbackType implements StepperFeedbackType {
     public void hideProgress() {
         setTabNavigationEnabled(true);
 
-        mProgressMessageTextView.animate()
+        ViewCompat.animate(mProgressMessageTextView)
                 .setStartDelay(0)
                 .alpha(ALPHA_INVISIBLE)
                 .translationY(mProgressMessageTranslationWhenHidden)
                 .setDuration(PROGRESS_ANIMATION_DURATION);
-        mTabs.animate()
+        ViewCompat.animate(mTabs)
                 .alpha(ALPHA_OPAQUE)
                 .setStartDelay(PROGRESS_ANIMATION_DURATION)
                 .setInterpolator(new AccelerateInterpolator())

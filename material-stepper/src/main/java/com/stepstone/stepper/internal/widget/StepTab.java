@@ -27,6 +27,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.RestrictTo;
 import android.support.graphics.drawable.AnimatedVectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nineoldandroids.view.ViewHelper;
 import com.stepstone.stepper.R;
 import com.stepstone.stepper.StepperLayout;
 
@@ -279,21 +281,21 @@ public class StepTab extends RelativeLayout {
         protected void changeToInactiveNumber() {
             mStepIconBackground.setColorFilter(mUnselectedColor);
             mStepTitle.setTextColor(mTitleColor);
-            mStepTitle.setAlpha(ALPHA_INACTIVE_STEP_TITLE);
+            ViewHelper.setAlpha(mStepTitle, ALPHA_INACTIVE_STEP_TITLE);
             super.changeToInactiveNumber();
         }
 
         @Override
         protected void changeToActiveNumber() {
             mStepIconBackground.setColorFilter(mSelectedColor);
-            mStepTitle.setAlpha(ALPHA_OPAQUE);
+            ViewHelper.setAlpha(mStepTitle, ALPHA_OPAQUE);
             super.changeToActiveNumber();
         }
 
         @Override
         protected void changeToDone() {
             mStepIconBackground.setColorFilter(mSelectedColor);
-            mStepTitle.setAlpha(ALPHA_OPAQUE);
+            ViewHelper.setAlpha(mStepTitle, ALPHA_OPAQUE);
             super.changeToDone();
         }
     }
@@ -303,7 +305,7 @@ public class StepTab extends RelativeLayout {
         @Override
         protected void changeToInactiveNumber() {
             mStepIconBackground.setColorFilter(mUnselectedColor);
-            mStepTitle.setAlpha(ALPHA_INACTIVE_STEP_TITLE);
+            ViewHelper.setAlpha(mStepTitle, ALPHA_INACTIVE_STEP_TITLE);
             super.changeToInactiveNumber();
         }
     }
@@ -315,7 +317,7 @@ public class StepTab extends RelativeLayout {
             mStepDoneIndicator.setVisibility(GONE);
             mStepNumber.setVisibility(VISIBLE);
             mStepIconBackground.setColorFilter(mUnselectedColor);
-            mStepTitle.setAlpha(ALPHA_INACTIVE_STEP_TITLE);
+            ViewHelper.setAlpha(mStepTitle, ALPHA_INACTIVE_STEP_TITLE);
             super.changeToInactiveNumber();
         }
 
@@ -352,7 +354,7 @@ public class StepTab extends RelativeLayout {
 
             mStepIconBackground.setColorFilter(mUnselectedColor);
             mStepTitle.setTextColor(mTitleColor);
-            mStepTitle.setAlpha(ALPHA_INACTIVE_STEP_TITLE);
+            ViewHelper.setAlpha(mStepTitle, ALPHA_INACTIVE_STEP_TITLE);
 
             super.changeToInactiveNumber();
         }
@@ -372,10 +374,10 @@ public class StepTab extends RelativeLayout {
             ((Animatable) avd).start();
 
             view.setVisibility(View.VISIBLE);
-            view.setAlpha(ALPHA_TRANSPARENT);
-            view.setScaleX(HALF_SIZE_SCALE);
-            view.setScaleY(HALF_SIZE_SCALE);
-            view.animate()
+            ViewHelper.setAlpha(view, ALPHA_TRANSPARENT);
+            ViewHelper.setScaleX(view, HALF_SIZE_SCALE);
+            ViewHelper.setScaleX(view, HALF_SIZE_SCALE);
+            ViewCompat.animate(view)
                     .setInterpolator(mAccelerateInterpolator)
                     .alpha(ALPHA_OPAQUE)
                     .scaleX(FULL_SIZE_SCALE)

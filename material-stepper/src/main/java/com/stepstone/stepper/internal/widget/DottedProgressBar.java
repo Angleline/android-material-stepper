@@ -22,11 +22,12 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.LinearLayout;
 
 import com.stepstone.stepper.R;
 import com.stepstone.stepper.internal.util.TintUtil;
@@ -37,7 +38,7 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY;
  * An indicator displaying the current position in a list of items with dots.
  */
 @RestrictTo(LIBRARY)
-public class DottedProgressBar extends LinearLayout {
+public class DottedProgressBar extends LinearLayoutCompat {
 
     private static final float FULL_SCALE = 1f;
     private static final float HALF_SCALE = 0.5f;
@@ -103,7 +104,8 @@ public class DottedProgressBar extends LinearLayout {
 
     /**
      * Changes the currently selected dot and updates the UI accordingly
-     * @param current the new currently selected dot
+     *
+     * @param current       the new currently selected dot
      * @param shouldAnimate true if the change should be animated, false otherwise
      */
     public void setCurrent(int current, boolean shouldAnimate) {
@@ -114,7 +116,7 @@ public class DottedProgressBar extends LinearLayout {
     private void update(boolean shouldAnimate) {
         for (int i = 0; i < mDotCount; i++) {
             if (i == mCurrent) {
-                getChildAt(i).animate()
+                ViewCompat.animate(getChildAt(i))
                         .scaleX(FULL_SCALE)
                         .scaleY(FULL_SCALE)
                         .setDuration(shouldAnimate ? SCALE_ANIMATION_DEFAULT_DURATION : DURATION_IMMEDIATE)
@@ -122,7 +124,7 @@ public class DottedProgressBar extends LinearLayout {
                         .start();
                 colorChildAtPosition(i, true);
             } else {
-                getChildAt(i).animate()
+                ViewCompat.animate(getChildAt(i))
                         .scaleX(HALF_SCALE)
                         .scaleY(HALF_SCALE)
                         .setDuration(shouldAnimate ? SCALE_ANIMATION_DEFAULT_DURATION : DURATION_IMMEDIATE)

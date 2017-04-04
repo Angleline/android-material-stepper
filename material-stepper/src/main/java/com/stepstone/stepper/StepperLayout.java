@@ -35,6 +35,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.view.ContextThemeWrapper;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -65,7 +66,7 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
  * Include this stepper in the layout XML file and choose a stepper type with <code>ms_stepperType</code>.<br>
  * Check out <code>values/attrs.xml - StepperLayout</code> for a complete list of customisable properties.
  */
-public class StepperLayout extends LinearLayout implements TabsContainer.TabItemListener {
+public class StepperLayout extends LinearLayoutCompat implements TabsContainer.TabItemListener {
 
     public static final int DEFAULT_TAB_DIVIDER_WIDTH = -1;
 

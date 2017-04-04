@@ -16,7 +16,6 @@ limitations under the License.
 
 package com.stepstone.stepper.internal.widget;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -25,10 +24,11 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Property;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.util.Property;
 import com.stepstone.stepper.R;
 import com.stepstone.stepper.internal.util.TintUtil;
 
@@ -137,6 +137,7 @@ public class ColorableProgressBar extends ProgressBar {
         TintUtil.tintDrawable(backgroundDrawable, mProgressBackgroundColor);
         TintUtil.tintDrawable(progressDrawable, mProgressColor);
     }
+
 
     private static final Property<ProgressBar, Integer> PROGRESS_PROPERTY = new Property<ProgressBar, Integer>(Integer.class, "progress") {
 

@@ -18,6 +18,7 @@ package com.stepstone.stepper.internal.feedback;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -46,7 +47,7 @@ public class ContentStepperFeedbackType implements StepperFeedbackType {
     @Override
     public void showProgress(@NonNull String progressMessage) {
         mPagerProgressBar.setVisibility(View.VISIBLE);
-        mPager.animate()
+        ViewCompat.animate(mPager)
                 .alpha(ALPHA_HALF)
                 .setDuration(PROGRESS_ANIMATION_DURATION);
     }
@@ -54,7 +55,7 @@ public class ContentStepperFeedbackType implements StepperFeedbackType {
     @Override
     public void hideProgress() {
         mPagerProgressBar.setVisibility(View.GONE);
-        mPager.animate()
+        ViewCompat.animate(mPager)
                 .alpha(ALPHA_OPAQUE)
                 .setDuration(PROGRESS_ANIMATION_DURATION);
     }
